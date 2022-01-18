@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class QrcodePage extends StatefulWidget {
+  const QrcodePage({Key? key}) : super(key: key);
   @override
   _QrcodePageState createState() => _QrcodePageState();
 }
@@ -10,10 +11,7 @@ class _QrcodePageState extends State<QrcodePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("3ページ目"),
-      ),
-      body: const Center(
-        child: Text("3ページ目です"),
+        title: const Text("受け取り"),
       ),
     );
   }

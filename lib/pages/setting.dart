@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SettingPage extends StatefulWidget {
+  const SettingPage({Key? key}) : super(key: key);
   @override
   _SettingPageState createState() => _SettingPageState();
 }
@@ -10,10 +11,7 @@ class _SettingPageState extends State<SettingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("4ページ目"),
-      ),
-      body: const Center(
-        child: Text("4ページ目です"),
+        title: const Text("setting"),
       ),
     );
   }
