@@ -1,7 +1,7 @@
 # CafExpress :coffee:
 
 学食総合予約システム「CafExpress」
-2022/01/25 後期期末発表会
+2022/01/25 後期期末発表会<br />
 2022/02/03 Digital Works 2021
 
 ## ToDo
