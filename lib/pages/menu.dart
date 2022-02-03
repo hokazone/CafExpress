@@ -13,29 +13,32 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Text(
           "メニュー",
         ),
       ),
-      body: Align(
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 30),
-              width: deviceWidth * 0.85,
-              height: deviceHeight * 0.07,
-              child: const SearchBar(),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 30, right: 30),
-              width: deviceWidth * 0.85,
-              height: deviceHeight * 0.6,
-              child: const MenuList(),
-              //color: Colors.pink,
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Align(
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(top: 30),
+                width: deviceWidth * 0.85,
+                height: deviceHeight * 0.07,
+                child: const SearchBar(),
+              ),
+              Container(
+                margin: const EdgeInsets.all(30),
+                //width: deviceWidth * 0.85,
+                height: deviceHeight * 0.8,
+                child: const MenuList(),
+                //color: Colors.pink,
+              ),
+            ],
+          ),
         ),
       ),
     );

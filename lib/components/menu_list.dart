@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cafexpress/components/menu_curry_contents.dart';
+import 'package:cafexpress/components/menu_higawari_contents.dart';
 import 'package:cafexpress/constants/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -10,8 +12,7 @@ class MenuList extends StatefulWidget {
 
 List<Card> _createCards() {
   Map<String, String> menuList = {
-    '日替わり定食':
-        'https://kd-cafexpress.s3.ap-northeast-3.amazonaws.com/higawari.jpg',
+    '定食': 'https://kd-cafexpress.s3.ap-northeast-3.amazonaws.com/higawari.jpg',
     '丼もの': 'https://kd-cafexpress.s3.ap-northeast-3.amazonaws.com/don.jpg',
     'カレー': 'https://kd-cafexpress.s3.ap-northeast-3.amazonaws.com/kare-.jpg',
     '麺類': 'https://kd-cafexpress.s3.ap-northeast-3.amazonaws.com/udon.jpg',
@@ -34,10 +35,12 @@ List<Card> _createCards() {
           child: Stack(
             children: [
               Container(
+                width: deviceWidth * 0.35,
+                height: deviceHeight * 0.12,
                 color: null,
                 child: CachedNetworkImage(
                   imageUrl: value,
-                  fit: BoxFit.fill,
+                  fit: BoxFit.cover,
                 ),
               ),
               Container(
@@ -77,7 +80,7 @@ List<Container> createRowCardList() {
             Container(
               //constraints: const BoxConstraints.expand(),
               margin: const EdgeInsets.all(10),
-              width: deviceWidth * 0.37,
+              width: deviceWidth * 0.35,
               height: deviceHeight * 0.12,
               child: cards[i],
               //color: Colors.pink,
@@ -85,7 +88,7 @@ List<Container> createRowCardList() {
             Container(
               //constraints: const BoxConstraints.expand(),
               margin: const EdgeInsets.all(10),
-              width: deviceWidth * 0.37,
+              width: deviceWidth * 0.35,
               height: deviceHeight * 0.12,
               child: cards[i + 1],
               //color: Colors.green,
@@ -98,13 +101,23 @@ List<Container> createRowCardList() {
   return menuCardList;
 }
 
+Widget navigateToPages(num) {
+  if (num == 0) {
+    return const HigawariPage();
+  } else if (num == 1) {
+    return const CurryPage();
+  } else {
+    return const HigawariPage();
+  }
+}
+
 class _MenuListState extends State<MenuList> {
   List<Container> menuCardList = createRowCardList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: const EdgeInsets.only(top: 30),
+      body: SizedBox(
+        //margin: const EdgeInsets.only(top: 30),
         width: deviceWidth * 0.85,
         height: deviceHeight * 0.6,
         //親Widget(menu.dart)と同じ値にしないとクラッシュする
@@ -112,7 +125,14 @@ class _MenuListState extends State<MenuList> {
           //physics: const NeverScrollableScrollPhysics(),
           itemCount: menuCardList.length,
           itemBuilder: (BuildContext context, int index) {
-            return menuCardList[index];
+            return InkWell(
+                child: menuCardList[index],
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => navigateToPages(index)));
+                });
           },
         ),
       ),

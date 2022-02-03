@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class TopCard extends StatefulWidget {
   final String image;
-  const TopCard({required this.image});
+  const TopCard({Key? key, required this.image}) : super(key: key);
 
   @override
   _TopCard createState() => _TopCard();

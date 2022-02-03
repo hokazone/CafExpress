@@ -1,11 +1,14 @@
 import 'package:cafexpress/constants/constants.dart';
 import 'package:cafexpress/pages/home.dart';
 import 'package:cafexpress/pages/menu.dart';
-import 'package:cafexpress/pages/qrcode.dart';
+import 'package:cafexpress/pages/recieve.dart';
 import 'package:cafexpress/pages/setting.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -16,9 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: const MyHomePage(),
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.deepOrange,
       ),
+      routes: {
+        "/recieve": (context) => const RecievePage(),
+      },
     );
   }
 }
@@ -46,14 +53,15 @@ class _MyHomePageState extends State<MyHomePage> {
     final _pages = <Widget>[
       const HomePage(),
       const MenuPage(),
-      const QrcodePage(),
+      const RecievePage(),
       const SettingPage(),
     ];
 
     final _bottomNavBarItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(icon: Icon(Icons.home), label: "ホーム"),
       const BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: "メニュー"),
-      const BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: "受け取り"),
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.confirmation_number), label: "受け取り"),
       const BottomNavigationBarItem(icon: Icon(Icons.settings), label: "設定")
     ];
 

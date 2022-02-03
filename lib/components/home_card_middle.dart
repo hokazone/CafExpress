@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class MiddleCard extends StatefulWidget {
   final String image;
-  const MiddleCard({required this.image});
+  const MiddleCard({Key? key, required this.image}) : super(key: key);
 
   @override
   _MiddleCard createState() => _MiddleCard();
